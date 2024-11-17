@@ -36,4 +36,4 @@ if __name__ == "__main__":
     # Recursively rename folders and files
     rename_folders_and_files(new_root_dir, old_name, new_name)
 
-    print(f"Renaming complete from '{old_name}' to '{new_name}'")
+    # print(f"Renaming complete from '{old_name}' to '{new_name}'")
