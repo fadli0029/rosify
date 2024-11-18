@@ -6,16 +6,29 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 endif()
 
 set(CMAKE_BUILD_TYPE "Release")
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
 find_package(ament_cmake REQUIRED)
+
+# ROS2 C++ API (rclcpp: https://github.com/ros2/rclcpp/tree/humble)
 find_package(rclcpp REQUIRED)
 find_package(rclcpp_components REQUIRED)
+
+# ROS2 messages
 find_package(std_msgs REQUIRED)
 find_package(vision_msgs REQUIRED)
+find_package(sensor_msgs REQUIRED)
+
+# Third parties
+find_package(PCL REQUIRED)
+find_package(pcl_conversions REQUIRED)
 
 include_directories(
   include
+  ${PCL_INCLUDE_DIRS}
 )
 
 add_library(
@@ -30,6 +43,9 @@ ament_target_dependencies(
   rclcpp_components
   std_msgs
   vision_msgs
+  sensor_msgs
+  PCL
+  pcl_conversions
 )
 rclcpp_components_register_nodes(package_name "package_name::PackageName")
 set(node_plugins "${node_plugins}package_name::PackageName;$<TARGET_FILE:package_name>\n")

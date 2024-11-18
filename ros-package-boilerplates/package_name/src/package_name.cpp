@@ -13,11 +13,11 @@ PackageName::PackageName(const rclcpp::NodeOptions& options)
   rclcpp::SubscriptionOptions sub_options;
 
   // Topic 1
-  topic_name_callback_gp_ = node_->create_callback_group(
+  callback_gp_topic_name_ = node_->create_callback_group(
       rclcpp::CallbackGroupType::MutuallyExclusive
     );
   sub_options.callback_group = topic_name_callback_gp_;
-  topic_name_sub_ = node_->create_subscription<vision_msgs::msg::Detection3DArray>(
+  sub_topic_name_ = node_->create_subscription<vision_msgs::msg::Detection3DArray>(
       "topic/name",
       rclcpp::SensorDataQoS{},
       std::bind(&PackageName::callback_topic_name, this, std::placeholders::_1),
@@ -36,7 +36,7 @@ PackageName::PackageName(const rclcpp::NodeOptions& options)
   /* ------------------------------------------------------------------------ */
 
   // Topic 1
-  topic_name_pub_=
+  pub_topic_name_=
     node_->create_publisher<vision_msgs::msg::Detection3DArray>(
         "topic/name", 10);
 

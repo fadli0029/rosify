@@ -38,13 +38,13 @@ class PackageName
   private:
 
     // Publishers
-    rclcpp::Publisher<vision_msgs::msg::Detection3DArray>::SharedPtr topic_name_pub_;
+    rclcpp::Publisher<vision_msgs::msg::Detection3DArray>::SharedPtr pub_topic_name_;
 
     // Subscribers
-    rclcpp::Subscription<vision_msgs::msg::Detection3DArray>::SharedPtr topic_name_sub_;
+    rclcpp::Subscription<vision_msgs::msg::Detection3DArray>::SharedPtr sub_topic_name_;
 
     // Callback groups
-    rclcpp::CallbackGroup::SharedPtr topic_name_callback_gp_;
+    rclcpp::CallbackGroup::SharedPtr callback_gp_topic_name_;
 
     // Others
     rclcpp::Node::SharedPtr node_;
