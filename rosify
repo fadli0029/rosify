@@ -28,7 +28,8 @@ CLANGD_CONTENT="CompileFlags:
   CompilationDatabase: \"../../build\""
 echo "$CLANGD_CONTENT" > .clangd
 if [ -f .clangd ]; then
-  echo ".clangd file created successfully with the following content:"
+  # do nothing
+  :
 else
   echo "Failed to create .clangd file."
 fi
