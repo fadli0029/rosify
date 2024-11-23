@@ -16,7 +16,7 @@ PackageName::PackageName(const rclcpp::NodeOptions& options)
   callback_gp_topic_name_ = node_->create_callback_group(
       rclcpp::CallbackGroupType::MutuallyExclusive
     );
-  sub_options.callback_group = topic_name_callback_gp_;
+  sub_options.callback_group = callback_gp_topic_name_;
   sub_topic_name_ = node_->create_subscription<vision_msgs::msg::Detection3DArray>(
       "topic/name",
       rclcpp::SensorDataQoS{},
