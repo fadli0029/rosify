@@ -20,7 +20,22 @@ python $HOME/Scripts/rosify/scripts/replace_text.py "PackageName" "$camel_case"
 # Step 4: Call the Python script that recursively replaces folder and file names with the passed argument
 python $HOME/Scripts/rosify/scripts/rename_folders_and_files.py "package_name" "$1"
 
-# Step 5: Give a summary of the created ROS package name
+# Step 5: Create a .clangd in the package's directory, so that clangd can index the package
+# Create the clangd file in the package's directory
+cd $1
+touch .clangd
+CLANGD_CONTENT="CompileFlags:
+  CompilationDatabase: \"../../build\""
+echo "$CLANGD_CONTENT" > .clangd
+if [ -f .clangd ]; then
+  echo ".clangd file created successfully with the following content:"
+else
+  echo "Failed to create .clangd file."
+fi
+
+cd ..
+
+# Step 6: Give a summary of the created ROS package name
 echo "===> Created a ROS package with name '$1' (the corresponding node was automatically registered as a ROS component)"
 echo ""
 echo "======="
